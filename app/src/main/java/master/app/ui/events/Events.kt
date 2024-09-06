@@ -21,10 +21,16 @@ class EventsFragment : Fragment() {
     ): View {
         _binding = FragmentEventsBinding.inflate(inflater, container, false)
 
-        // Setup RecyclerView for DR events
-        binding.drEventsRecyclerView.layoutManager = LinearLayoutManager(requireContext())
-        viewModel.getEvents().observe(viewLifecycleOwner) { events ->
-            binding.drEventsRecyclerView.adapter = EventsAdapter(events)
+        // Setup RecyclerView for Residential DR events
+        binding.residentialEventsRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+        viewModel.getResidentialEvents().observe(viewLifecycleOwner) { events ->
+            binding.residentialEventsRecyclerView.adapter = EventsAdapter(events)
+        }
+
+        // Setup RecyclerView for Commercial DR events
+        binding.commercialEventsRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+        viewModel.getCommercialEvents().observe(viewLifecycleOwner) { events ->
+            binding.commercialEventsRecyclerView.adapter = EventsAdapter(events)
         }
 
         return binding.root
