@@ -8,39 +8,39 @@
     tools:context=".ui.currentPrices.CurrentPricesFragment"
     android:padding="16dp">
 
-    <!-- Information Text -->
+    <!-- Heading for the Page -->
     <TextView
-        android:id="@+id/electricity_price_info"
-        android:layout_width="0dp"
+        android:id="@+id/heading_current_prices"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Informacije o trenutnim cenama na tržištu i predlozi za optimizaciju potrošnje."
-        android:textSize="16sp"
-        android:textColor="@color/black"
+        android:text="Current Electricity Price"
+        android:textSize="24sp"
+        android:textStyle="bold"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginBottom="16dp" />
+        android:layout_marginBottom="16dp"/>
 
-    <!-- Line Chart for Electricity Price -->
-    <com.github.mikephil.charting.charts.LineChart
+    <!-- Bar Chart for Electricity Price -->
+    <com.github.mikephil.charting.charts.BarChart
         android:id="@+id/electricityPriceChart"
         android:layout_width="0dp"
         android:layout_height="300dp"
-        app:layout_constraintTop_toBottomOf="@id/electricity_price_info"
+        app:layout_constraintTop_toBottomOf="@id/heading_current_prices"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginBottom="16dp" />
 
-    <!-- Notification Info Text -->
+    <!-- Explanation and Prices for Zones (Combined Text) -->
     <TextView
-        android:id="@+id/price_notification_info"
-        android:layout_width="0dp"
+        android:id="@+id/combined_zone_info"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Automatska obaveštenja kada su cene energije visoke, kako bi korisnici mogli prilagoditi svoju potrošnju."
-        android:textSize="16sp"
-        android:textColor="@color/black"
-        app:layout_constraintTop_toBottomOf="@id/electricityPriceChart"
+        android:layout_marginTop="32dp"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.071"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
+        app:layout_constraintTop_toBottomOf="@id/electricityPriceChart"
+        tools:text="Price info here" />
 </androidx.constraintlayout.widget.ConstraintLayout>
