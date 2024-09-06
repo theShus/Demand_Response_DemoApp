@@ -1,6 +1,5 @@
 package master.app.ui.spendingHistory
 
-import SpendingItem
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
@@ -28,10 +27,12 @@ class SpendingHistoryAdapter(private val spendingList: List<SpendingItem>) :
     inner class SpendingViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val monthTextView: TextView = itemView.findViewById(R.id.spendingMonth)
         private val amountTextView: TextView = itemView.findViewById(R.id.spendingAmount)
+        private val totalCostTextView: TextView = itemView.findViewById(R.id.spendingTotalCost)
 
         fun bind(spendingItem: SpendingItem) {
             monthTextView.text = spendingItem.month
             amountTextView.text = spendingItem.amount
+            totalCostTextView.text = "Total: ${spendingItem.totalCost} RSD"
             // Set color based on whether the value is positive (green) or negative (red)
             amountTextView.setTextColor(if (spendingItem.isPositive) Color.GREEN else Color.RED)
         }

@@ -6,20 +6,32 @@
     android:orientation="horizontal"
     android:padding="16dp">
 
+    <!-- Month Text -->
     <TextView
         android:id="@+id/spendingMonth"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:text="Month"
-        android:textSize="16sp"
-        android:textColor="@android:color/black" />
+        android:textColor="@android:color/black"
+        android:textSize="16sp" />
 
+    <!-- Monthly Difference Amount Text -->
     <TextView
         android:id="@+id/spendingAmount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="+500 RSD"
         android:textSize="16sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:layout_marginEnd="16dp" />
+
+    <!-- Total Cost Text -->
+    <TextView
+        android:id="@+id/spendingTotalCost"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Total Cost"
+        android:textSize="16sp"
+        android:textColor="@android:color/darker_gray" />
 </LinearLayout>
