@@ -53,12 +53,15 @@ class SmartDevicesFragment : Fragment() {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == ADD_DEVICE_REQUEST_CODE && resultCode == AppCompatActivity.RESULT_OK) {
             // Get device information from the result intent
-            val deviceName = data?.getStringExtra("deviceName") ?: ""
-            val deviceStatus = data?.getStringExtra("deviceStatus") ?: ""
-            val deviceImage = data?.getIntExtra("deviceImage", R.drawable.baseline_add_24) ?: 0
+            val name = data?.getStringExtra("name") ?: ""
+            val status = data?.getStringExtra("status") ?: ""
+            val imageResId = data?.getIntExtra("imageResId", R.drawable.baseline_add_24) ?: 0
+            val powerDraw = data?.getStringExtra("powerDraw") ?: ""
+            val additionalInfo = data?.getStringExtra("additionalInfo") ?: ""
+            val imageUrl = data?.getStringExtra("imageUrl") ?: ""
 
-            // Add the new device to the ViewModel
-            val newDevice = DeviceItem(deviceName, deviceImage, deviceStatus)
+//             Add the new device to the ViewModel
+            val newDevice = DeviceItem(name, imageResId, status, powerDraw, additionalInfo, imageUrl)
             smartDevicesViewModel.addDevice(newDevice)
         }
     }

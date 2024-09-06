@@ -9,17 +9,20 @@
     android:padding="16dp">
 
     <!-- Search Button -->
+
+    <!-- Progress Bar for Searching Animation -->
+
     <Button
         android:id="@+id/searchDevicesButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="324dp"
         android:text="Search for Devices"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp" />
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Progress Bar for Searching Animation -->
     <ProgressBar
         android:id="@+id/searchProgressBar"
         android:layout_width="wrap_content"

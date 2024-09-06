@@ -35,6 +35,7 @@ android {
     }
     buildFeatures {
         viewBinding = true
+
     }
 }
 
@@ -56,5 +57,6 @@ dependencies {
 
     implementation(libs.mpandroidchart)
     implementation(libs.playservicesmaps)
-
+    implementation(libs.glide)
+//    kapt(libs.glideCompiler)
 }

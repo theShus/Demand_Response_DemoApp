@@ -27,13 +27,12 @@ class FoundDevicesAdapter(private val devicesList: List<DeviceItem>, private val
     override fun getItemCount(): Int = devicesList.size
 
     inner class DeviceViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val deviceImage: ImageView = itemView.findViewById(R.id.deviceImage)
         private val deviceName: TextView = itemView.findViewById(R.id.deviceName)
         private val deviceStatus: TextView = itemView.findViewById(R.id.deviceStatus)
         private val moreInfoButton: Button = itemView.findViewById(R.id.moreInfoButton)
 
         fun bind(deviceItem: DeviceItem, onDeviceSelected: (DeviceItem) -> Unit) {
-            deviceImage.setImageResource(deviceItem.imageResId)
+//            deviceImage.setImageResource(deviceItem.imageUrl) todo stavi sliku
             deviceName.text = deviceItem.name
             deviceStatus.text = deviceItem.status
 

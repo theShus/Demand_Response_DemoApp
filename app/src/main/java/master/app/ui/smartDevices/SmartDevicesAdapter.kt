@@ -41,7 +41,12 @@ class SmartDevicesAdapter(private val devicesList: List<DeviceItem>) :
             // Handle "More Info" button click
             moreInfoButton.setOnClickListener {
                 val intent = Intent(itemView.context, DeviceDetailsActivity::class.java)
-                intent.putExtra("deviceName", deviceItem.name)
+               intent.putExtra("name", deviceItem.name)
+               intent.putExtra("imageResId", deviceItem.imageResId)
+               intent.putExtra("status", deviceItem.status)
+               intent.putExtra("powerDraw", deviceItem.powerDraw)
+               intent.putExtra("additionalInfo", deviceItem.additionalInfo)
+               intent.putExtra("imageUrl", deviceItem.imageUrl)
                 itemView.context.startActivity(intent)
             }
         }
