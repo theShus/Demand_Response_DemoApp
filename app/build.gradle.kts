@@ -58,5 +58,7 @@ dependencies {
     implementation(libs.mpandroidchart)
     implementation(libs.playservicesmaps)
     implementation(libs.glide)
-//    kapt(libs.glideCompiler)
-}
+
+    implementation(libs.retrofit)
+    implementation(libs.retrofitConverterGson)
+    implementation(libs.okhttp)}

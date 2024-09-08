@@ -34,7 +34,9 @@ androidx-legacy-support-v4 = { group = "androidx.legacy", name = "legacy-support
 mpandroidchart = { module = "com.github.PhilJay:MPAndroidChart", version = "v3.1.0" }
 playservicesmaps = { group = "com.google.android.gms", name = "play-services-maps", version = "18.0.2" }
 glide = { group = "com.github.bumptech.glide", name = "glide", version = "4.15.1" }
-glideCompiler = { group = "com.github.bumptech.glide", name = "compiler", version = "4.15.1" }
+retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version = "2.9.0" }
+retrofitConverterGson = { group = "com.squareup.retrofit2", name = "converter-gson", version = "2.9.0" }
+okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version = "4.9.1" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

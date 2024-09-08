@@ -1,5 +1,6 @@
 package master.app.ui.events
 
+import EventsViewModel
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -21,16 +22,28 @@ class EventsFragment : Fragment() {
     ): View {
         _binding = FragmentEventsBinding.inflate(inflater, container, false)
 
-        // Setup RecyclerView for Residential DR events
-        binding.residentialEventsRecyclerView.layoutManager = LinearLayoutManager(requireContext())
-        viewModel.getResidentialEvents().observe(viewLifecycleOwner) { events ->
-            binding.residentialEventsRecyclerView.adapter = EventsAdapter(events)
-        }
 
-        // Setup RecyclerView for Commercial DR events
-        binding.commercialEventsRecyclerView.layoutManager = LinearLayoutManager(requireContext())
-        viewModel.getCommercialEvents().observe(viewLifecycleOwner) { events ->
-            binding.commercialEventsRecyclerView.adapter = EventsAdapter(events)
+        viewModel.fetchData()
+
+        // Observe the LiveData from the ViewModel
+        viewModel.events.observe(viewLifecycleOwner) { events ->
+            // Setup RecyclerView for Residential DR events
+            val residentialEvents = events?.filter { it.isResidential }
+            binding.residentialEventsRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+            binding.residentialEventsRecyclerView.adapter = residentialEvents?.let {
+                EventsAdapter(
+                    it
+                )
+            }
+
+            // Setup RecyclerView for Commercial DR events
+            val nonResidentialEvents = events?.filter { !it.isResidential }
+            binding.commercialEventsRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+            binding.commercialEventsRecyclerView.adapter = nonResidentialEvents?.let {
+                EventsAdapter(
+                    it
+                )
+            }
         }
 
         return binding.root

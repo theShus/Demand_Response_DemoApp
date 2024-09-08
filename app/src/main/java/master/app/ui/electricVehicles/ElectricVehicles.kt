@@ -1,17 +1,16 @@
-package master.app.ui.electricVehicles
-
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.MapView
 import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
-import master.app.R
 import master.app.databinding.FragmentElectricVehiclesBinding
 
 class ElectricVehiclesFragment : Fragment(), OnMapReadyCallback {
@@ -21,6 +20,9 @@ class ElectricVehiclesFragment : Fragment(), OnMapReadyCallback {
 
     private lateinit var mapView: MapView
     private lateinit var googleMap: GoogleMap
+
+    // ViewModel reference
+    private val electricVehiclesViewModel: ElectricVehiclesViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,29 +39,43 @@ class ElectricVehiclesFragment : Fragment(), OnMapReadyCallback {
         // Update battery status
         binding.batteryStatusValue.text = "70%" // You can update it dynamically
 
+        // Observe charger locations LiveData from the ViewModel
+        electricVehiclesViewModel.chargerLocations.observe(viewLifecycleOwner) { locations ->
+            addChargerLocations(locations)
+        }
+
+        // Fetch charger locations from the API
+        electricVehiclesViewModel.fetchChargerLocations()
+
         return root
     }
 
     override fun onMapReady(map: GoogleMap) {
         googleMap = map
 
-        // Move camera to Belgrade
-//        val belgrade = LatLng(44.7866, 20.4489)
-//        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(belgrade, 12f))
-
-        // Add electric charger locations (markers)
-        addChargerLocations()
+        // Move camera to Belgrade as a default location
+        val belgrade = LatLng(44.7866, 20.4489) // Coordinates for Belgrade
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(belgrade, 12f)) // Set default zoom
     }
 
-    private fun addChargerLocations() {
-        // Example locations for electric chargers in Belgrade
-        val charger1 = LatLng(44.8125, 20.4612) // Random coordinates
-        val charger2 = LatLng(44.7984, 20.4314)
-        val charger3 = LatLng(44.7837, 20.4781)
+    private fun addChargerLocations(locations: List<ChargerLocation>) {
+        // Clear any existing markers
+        googleMap.clear()
 
-//        googleMap.addMarker(MarkerOptions().position(charger1).title("Electric Charger 1"))
-//        googleMap.addMarker(MarkerOptions().position(charger2).title("Electric Charger 2"))
-//        googleMap.addMarker(MarkerOptions().position(charger3).title("Electric Charger 3"))
+        // Add new charger locations to the map
+        locations.forEach { location ->
+            val latLng = LatLng(location.latitude, location.longitude)
+            googleMap.addMarker(MarkerOptions().position(latLng).title(location.title))
+        }
+
+        // Add vehicle location (this could be fetched dynamically as well)
+        val vehicleLocation = LatLng(44.805, 20.450) // Replace with actual vehicle coordinates
+        googleMap.addMarker(
+            MarkerOptions()
+                .position(vehicleLocation)
+                .title("Your Vehicle")
+                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)) // Blue marker
+        )
     }
 
     // MapView lifecycle methods
