@@ -1,5 +1,6 @@
 import master.app.eventResponses.ChargerLocationsResponse
 import master.app.eventResponses.EventsResponse
+import master.app.eventResponses.PriceDataResponse
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -12,5 +13,8 @@ interface ApiService {
     // GET request to fetch data from DynamoDB (via Lambda)
     @GET("chargerLocations")
     fun getChargerLocations(): Call<ChargerLocationsResponse> // Replace with your data model
+
+    @GET("prices")
+    fun getPriceData(): Call<PriceDataResponse> // Replace with your data model
 
 }
