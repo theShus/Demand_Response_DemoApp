@@ -1,3 +1,6 @@
+import master.app.RegisterRequest
+import master.app.RegisterResponse
+import master.app.UserResponse
 import master.app.eventResponses.ChargerLocationsResponse
 import master.app.eventResponses.EventsResponse
 import master.app.eventResponses.PriceDataResponse
@@ -16,5 +19,11 @@ interface ApiService {
 
     @GET("prices")
     fun getPriceData(): Call<PriceDataResponse> // Replace with your data model
+
+    @POST("users")
+    fun registerUser(@Body request: RegisterRequest): Call<RegisterResponse>
+
+    @GET("users")
+    fun loginUser(@Query("email") email: String): Call<UserResponse>
 
 }
