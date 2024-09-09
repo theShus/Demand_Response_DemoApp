@@ -1,9 +1,13 @@
+package master.app.ui.electricVehicles
+
+import ChargerLocation
+import ElectricVehiclesViewModel
+import androidx.fragment.app.viewModels
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.MapView
@@ -13,7 +17,7 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import master.app.databinding.FragmentElectricVehiclesBinding
 
-class ElectricVehiclesFragment : Fragment(), OnMapReadyCallback {
+class ElectricVehicles : Fragment(), OnMapReadyCallback {
 
     private var _binding: FragmentElectricVehiclesBinding? = null
     private val binding get() = _binding!!
@@ -49,6 +53,7 @@ class ElectricVehiclesFragment : Fragment(), OnMapReadyCallback {
 
         return root
     }
+
 
     override fun onMapReady(map: GoogleMap) {
         googleMap = map

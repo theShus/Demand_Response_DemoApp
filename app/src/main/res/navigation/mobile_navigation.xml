@@ -31,7 +31,7 @@
 
     <fragment
         android:id="@+id/electric_vehicles"
-        android:name="master.app.ui.electricVehicles.ElectricVehiclesFragment"
+        android:name="master.app.ui.electricVehicles.ElectricVehicles"
         android:label="Electric Vehicles"
         tools:layout="@layout/fragment_electric_vehicles" />
 
